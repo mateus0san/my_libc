@@ -1,6 +1,14 @@
 #include <stddef.h>
 #include <stdio.h>
 
+void my_bzero(void *s, size_t n) {
+  unsigned char *src = s;
+
+  while (n--) {
+    *src++ = '\0';
+  }
+}
+
 void *my_memset(void *s, int c, size_t n) {
   unsigned char *src = s;
    
@@ -87,10 +95,22 @@ int main(void) {
     puts("test 5 failed!");
   }
 
+  // memmove test
   my_memmove(s5, "042", sizeof("042"));
   if (my_strcmp(s5, "042") != 0) {
     puts("test 6 failed");
   }  
 
+  // memset test
+  my_memset(s5, 'E', 4);
+  if (my_strcmp(s5, "EEEE") != 0) {
+    puts("test 7 failed");
+  }
+
+  // bzero test
+  my_bzero(s5, 4);
+  if (my_strcmp(s5, "EEEE") == 0) {
+    puts("test 8 failed");
+  }
   puts("finished tests");
 }

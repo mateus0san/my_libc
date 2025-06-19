@@ -1,7 +1,7 @@
-memset
-bzero
-memcpy
-memmove
+1 memset
+1 bzero
+1 memcpy
+1 memmove
 memchr
 memcmp
 strlen
